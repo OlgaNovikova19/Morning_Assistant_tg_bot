@@ -1,0 +1,46 @@
+2024-10-08 21:52:57,300 - INFO - Start polling
+2024-10-08 21:52:57,360 - INFO - Run polling for bot @MorningManagerBot id=7091928846 - 'PersonalManagerBot'
+2024-10-08 21:52:59,445 - INFO - Update id=262103448 is not handled. Duration 0 ms by bot id=7091928846
+2024-10-08 21:52:59,814 - INFO - Update id=262103449 is not handled. Duration 0 ms by bot id=7091928846
+2024-10-08 21:53:03,476 - INFO - message.content_type: ContentType.TEXT
+2024-10-08 21:53:03,476 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-08 21:53:03,561 - INFO - Update id=262103450 is handled. Duration 94 ms by bot id=7091928846
+2024-10-08 21:53:04,853 - INFO - callback is called from button:"Get today horoscope"
+2024-10-08 21:53:04,853 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-08 21:53:04,903 - INFO - Update id=262103451 is handled. Duration 61 ms by bot id=7091928846
+2024-10-08 21:53:06,081 - INFO - callback is called from button:"I don`t know my zodiac sign"
+2024-10-08 21:53:06,081 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-08 21:53:07,203 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:07,286 - INFO - Update id=262103453 is handled. Duration 108 ms by bot id=7091928846
+2024-10-08 21:53:08,666 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:08,714 - INFO - Update id=262103454 is handled. Duration 47 ms by bot id=7091928846
+2024-10-08 21:53:09,348 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:09,381 - INFO - Update id=262103455 is handled. Duration 30 ms by bot id=7091928846
+2024-10-08 21:53:11,647 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:11,680 - INFO - Update id=262103456 is handled. Duration 30 ms by bot id=7091928846
+2024-10-08 21:53:13,357 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:13,391 - INFO - Update id=262103457 is handled. Duration 63 ms by bot id=7091928846
+2024-10-08 21:53:20,930 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:20,972 - INFO - Update id=262103458 is handled. Duration 46 ms by bot id=7091928846
+2024-10-08 21:53:21,636 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:21,709 - INFO - Update id=262103459 is handled. Duration 78 ms by bot id=7091928846
+2024-10-08 21:53:22,332 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:22,367 - INFO - Update id=262103460 is handled. Duration 46 ms by bot id=7091928846
+2024-10-08 21:53:24,769 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:24,867 - INFO - Update id=262103461 is handled. Duration 109 ms by bot id=7091928846
+2024-10-08 21:53:26,014 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:26,067 - INFO - Update id=262103462 is handled. Duration 63 ms by bot id=7091928846
+2024-10-08 21:53:30,984 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:31,120 - INFO - Update id=262103463 is handled. Duration 140 ms by bot id=7091928846
+2024-10-08 21:53:31,847 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:31,902 - INFO - Update id=262103464 is handled. Duration 47 ms by bot id=7091928846
+2024-10-08 21:53:32,488 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:32,521 - INFO - Update id=262103465 is handled. Duration 32 ms by bot id=7091928846
+2024-10-08 21:53:33,108 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:33,178 - INFO - Update id=262103466 is handled. Duration 78 ms by bot id=7091928846
+2024-10-08 21:53:35,822 - INFO - callback is called from button with number of year of birth
+2024-10-08 21:53:35,824 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-08 21:53:35,864 - INFO - Update id=262103467 is handled. Duration 61 ms by bot id=7091928846
+2024-10-08 21:53:35,887 - INFO - Update id=262103452 is handled. Duration 29828 ms by bot id=7091928846
+2024-10-08 21:53:41,037 - INFO - Polling stopped
+2024-10-08 21:53:41,293 - INFO - Polling stopped for bot @MorningManagerBot id=7091928846 - 'PersonalManagerBot'
