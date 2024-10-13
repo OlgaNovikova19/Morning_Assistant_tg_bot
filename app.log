@@ -1,2 +1,223 @@
-2024-10-08 22:56:26,851 - INFO - Start polling
-2024-10-08 22:56:26,912 - INFO - Run polling for bot @MorningManagerBot id=7091928846 - 'PersonalManagerBot'
+2024-10-13 22:01:38,382 - INFO - Start polling
+2024-10-13 22:01:38,436 - INFO - Run polling for bot @MorningManagerBot id=7091928846 - 'PersonalManagerBot'
+2024-10-13 22:30:19,877 - INFO - message.content_type: ContentType.TEXT
+2024-10-13 22:30:19,877 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-13 22:30:19,999 - INFO - Update id=262103813 is handled. Duration 108 ms by bot id=7091928846
+2024-10-13 22:30:23,499 - INFO - callback is called from button with callback.data Get weather conditions
+2024-10-13 22:30:23,590 - INFO - Update id=262103814 is handled. Duration 93 ms by bot id=7091928846
+2024-10-13 22:30:27,724 - INFO - message.content_type: ContentType.LOCATION
+2024-10-13 22:30:27,724 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-13 22:30:27,760 - INFO - Update id=262103815 is not handled. Duration 32 ms by bot id=7091928846
+2024-10-13 22:30:27,760 - ERROR - Cause exception while process update id=262103815 by bot id=7091928846
+AttributeError: 'NoneType' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\main.py", line 704, in message_handler
+    if message.text.lower() == 'select':
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'lower'
+2024-10-13 22:30:53,552 - INFO - callback is called with callback.data starting with "et current air"
+2024-10-13 22:30:53,552 - INFO - function called: get_allergens(coordinates: dict) with args coordinates = {'latitude': 51.483185, 'longitude': 5.502601}
+2024-10-13 22:30:53,642 - INFO - API AIR QUALITY returned {'latitude': 51.449997, 'longitude': 5.549999, 'generationtime_ms': 0.12993812561035156, 'utc_offset_seconds': 7200, 'timezone': 'Europe/Amsterdam', 'timezone_abbreviation': 'CEST', 'elevation': 18.0, 'current_units': {'time': 'iso8601', 'interval': 'seconds', 'uv_index': '', 'pm10': '\u03bcg/m\xb3', 'pm2_5': '\u03bcg/m\xb3', 'dust': '\u03bcg/m\xb3', 'carbon_monoxide': '\u03bcg/m\xb3', 'european_aqi': 'EAQI'}, 'current': {'time': '2024-10-13T22:00', 'interval': 3600, 'uv_index': 0.0, 'pm10': 15.3, 'pm2_5': 8.0, 'dust': 0.0, 'carbon_monoxide': 212.0, 'european_aqi': 14}}
+2024-10-13 22:30:56,383 - INFO - GOOGLE AI API returned response.text: response:
+GenerateContentResponse(
+    done=True,
+    iterator=None,
+    result=protos.GenerateContentResponse({
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "## Air Quality Evaluation: 2024-10-13T22:00\n\nBased on the provided data, the air quality at 2024-10-13T22:00 is **generally good**, but with some potential concerns:\n\n**Positive Aspects:**\n\n* **Low UV Index (0.0):** This indicates minimal risk of sunburns or other UV-related health issues.\n* **Low Dust (0.0):** The absence of dust particles suggests a clean and breathable atmosphere.\n* **Moderate PM10 (15.3):**  The PM10 level is below the WHO guideline for 24-hour average (50 \u00b5g/m\u00b3), indicating minimal risk to public health.\n* **Low PM2.5 (8.0):**  The PM2.5 level is well below the WHO guideline for 24-hour average (25 \u00b5g/m\u00b3), indicating minimal risk to public health.\n* **European AQI (14):** This indicates **good** air quality according to the European Air Quality Index.\n\n**Potential Concerns:**\n\n* **High Carbon Monoxide (212.0):** This level is significantly higher than the WHO guideline for 8-hour average (4 mg/m\u00b3) and could be a concern for individuals with pre-existing respiratory conditions. \n\n**Recommendations:**\n\n* **Monitor carbon monoxide levels:**  While the overall air quality appears good, the high carbon monoxide level warrants continued monitoring, especially for sensitive populations.\n* **Maintain awareness of air quality:** Regularly check air quality reports and consider minimizing outdoor activities during periods of high pollution.\n\n**Overall:**\n\nThe air quality at 2024-10-13T22:00 is generally good with some potential concerns related to carbon monoxide.  It's important to be mindful of the carbon monoxide levels and consider taking precautions if necessary. \n"
+              }
+            ],
+            "role": "model"
+          },
+          "finish_reason": "STOP",
+          "index": 0,
+          "safety_ratings": [
+            {
+              "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+              "probability": "NEGLIGIBLE"
+            },
+            {
+              "category": "HARM_CATEGORY_HATE_SPEECH",
+              "probability": "NEGLIGIBLE"
+            },
+            {
+              "category": "HARM_CATEGORY_HARASSMENT",
+              "probability": "NEGLIGIBLE"
+            },
+            {
+              "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+              "probability": "NEGLIGIBLE"
+            }
+          ]
+        }
+      ],
+      "usage_metadata": {
+        "prompt_token_count": 104,
+        "candidates_token_count": 414,
+        "total_token_count": 518
+      }
+    }),
+)
+2024-10-13 22:30:56,496 - INFO - Update id=262103816 is handled. Duration 2938 ms by bot id=7091928846
+2024-10-13 22:32:17,270 - INFO - callback is called from button with callback.data == "Get sunset/sunrise"
+2024-10-13 22:32:17,270 - INFO - function called: get_sunrise_sunset_data(coordinates: dict) with args coordinates = {'latitude': 51.483185, 'longitude': 5.502601}
+2024-10-13 22:32:17,350 - INFO - API WEATHER_CURRENT returned {'latitude': 51.484, 'longitude': 5.5099998, 'generationtime_ms': 0.1270771026611328, 'utc_offset_seconds': 7200, 'timezone': 'Europe/Amsterdam', 'timezone_abbreviation': 'CEST', 'elevation': 18.0, 'daily_units': {'time': 'iso8601', 'sunrise': 'iso8601', 'sunset': 'iso8601', 'daylight_duration': 's', 'sunshine_duration': 's'}, 'daily': {'time': ['2024-10-13', '2024-10-14', '2024-10-15', '2024-10-16', '2024-10-17', '2024-10-18', '2024-10-19'], 'sunrise': ['2024-10-13T07:59', '2024-10-14T08:01', '2024-10-15T08:02', '2024-10-16T08:04', '2024-10-17T08:06', '2024-10-18T08:08', '2024-10-19T08:09'], 'sunset': ['2024-10-13T18:48', '2024-10-14T18:46', '2024-10-15T18:44', '2024-10-16T18:42', '2024-10-17T18:39', '2024-10-18T18:37', '2024-10-19T18:35'], 'daylight_duration': [38949.03, 38717.54, 38487.25, 38258.34, 38030.98, 37805.36, 37581.42], 'sunshine_duration': [17972.48, 730.51, 27393.38, 30995.14, 0.0, 806.12, 2732.59]}}
+2024-10-13 22:32:17,351 - INFO - function called: get_sunrise_sunset_data(coordinates: dict) with args coordinates = {'latitude': 51.483185, 'longitude': 5.502601}
+2024-10-13 22:32:17,427 - INFO - API WEATHER_CURRENT returned {'latitude': 51.484, 'longitude': 5.5099998, 'generationtime_ms': 0.12004375457763672, 'utc_offset_seconds': 7200, 'timezone': 'Europe/Amsterdam', 'timezone_abbreviation': 'CEST', 'elevation': 18.0, 'daily_units': {'time': 'iso8601', 'sunrise': 'iso8601', 'sunset': 'iso8601', 'daylight_duration': 's', 'sunshine_duration': 's'}, 'daily': {'time': ['2024-10-13', '2024-10-14', '2024-10-15', '2024-10-16', '2024-10-17', '2024-10-18', '2024-10-19'], 'sunrise': ['2024-10-13T07:59', '2024-10-14T08:01', '2024-10-15T08:02', '2024-10-16T08:04', '2024-10-17T08:06', '2024-10-18T08:08', '2024-10-19T08:09'], 'sunset': ['2024-10-13T18:48', '2024-10-14T18:46', '2024-10-15T18:44', '2024-10-16T18:42', '2024-10-17T18:39', '2024-10-18T18:37', '2024-10-19T18:35'], 'daylight_duration': [38949.03, 38717.54, 38487.25, 38258.34, 38030.98, 37805.36, 37581.42], 'sunshine_duration': [17972.48, 730.51, 27393.38, 30995.14, 0.0, 806.12, 2732.59]}}
+2024-10-13 22:32:17,428 - INFO - function called: get_sunrise_sunset_data(coordinates: dict) with args coordinates = {'latitude': 51.483185, 'longitude': 5.502601}
+2024-10-13 22:32:17,497 - INFO - API WEATHER_CURRENT returned {'latitude': 51.484, 'longitude': 5.5099998, 'generationtime_ms': 0.06699562072753906, 'utc_offset_seconds': 7200, 'timezone': 'Europe/Amsterdam', 'timezone_abbreviation': 'CEST', 'elevation': 18.0, 'daily_units': {'time': 'iso8601', 'sunrise': 'iso8601', 'sunset': 'iso8601', 'daylight_duration': 's', 'sunshine_duration': 's'}, 'daily': {'time': ['2024-10-13', '2024-10-14', '2024-10-15', '2024-10-16', '2024-10-17', '2024-10-18', '2024-10-19'], 'sunrise': ['2024-10-13T07:59', '2024-10-14T08:01', '2024-10-15T08:02', '2024-10-16T08:04', '2024-10-17T08:06', '2024-10-18T08:08', '2024-10-19T08:09'], 'sunset': ['2024-10-13T18:48', '2024-10-14T18:46', '2024-10-15T18:44', '2024-10-16T18:42', '2024-10-17T18:39', '2024-10-18T18:37', '2024-10-19T18:35'], 'daylight_duration': [38949.03, 38717.54, 38487.25, 38258.34, 38030.98, 37805.36, 37581.42], 'sunshine_duration': [17972.48, 730.51, 27393.38, 30995.14, 0.0, 806.12, 2732.59]}}
+2024-10-13 22:32:17,497 - INFO - function called: get_sunrise_sunset_data(coordinates: dict) with args coordinates = {'latitude': 51.483185, 'longitude': 5.502601}
+2024-10-13 22:32:17,571 - INFO - API WEATHER_CURRENT returned {'latitude': 51.484, 'longitude': 5.5099998, 'generationtime_ms': 0.1100301742553711, 'utc_offset_seconds': 7200, 'timezone': 'Europe/Amsterdam', 'timezone_abbreviation': 'CEST', 'elevation': 18.0, 'daily_units': {'time': 'iso8601', 'sunrise': 'iso8601', 'sunset': 'iso8601', 'daylight_duration': 's', 'sunshine_duration': 's'}, 'daily': {'time': ['2024-10-13', '2024-10-14', '2024-10-15', '2024-10-16', '2024-10-17', '2024-10-18', '2024-10-19'], 'sunrise': ['2024-10-13T07:59', '2024-10-14T08:01', '2024-10-15T08:02', '2024-10-16T08:04', '2024-10-17T08:06', '2024-10-18T08:08', '2024-10-19T08:09'], 'sunset': ['2024-10-13T18:48', '2024-10-14T18:46', '2024-10-15T18:44', '2024-10-16T18:42', '2024-10-17T18:39', '2024-10-18T18:37', '2024-10-19T18:35'], 'daylight_duration': [38949.03, 38717.54, 38487.25, 38258.34, 38030.98, 37805.36, 37581.42], 'sunshine_duration': [17972.48, 730.51, 27393.38, 30995.14, 0.0, 806.12, 2732.59]}}
+2024-10-13 22:32:17,690 - INFO - Update id=262103817 is handled. Duration 421 ms by bot id=7091928846
+2024-10-13 22:34:20,454 - INFO - message.content_type: ContentType.TEXT
+2024-10-13 22:34:20,454 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-13 22:34:20,527 - INFO - Update id=262103818 is handled. Duration 62 ms by bot id=7091928846
+2024-10-13 22:36:33,084 - INFO - callback is called from button with callback.data "get morning wishes"
+2024-10-13 22:36:33,084 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-13 22:36:33,143 - INFO - Update id=262103819 is handled. Duration 62 ms by bot id=7091928846
+2024-10-13 22:47:22,466 - INFO - callback is called from button with callback.data "get morning wishes"
+2024-10-13 22:47:22,466 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-13 22:47:22,541 - INFO - Update id=262103820 is handled. Duration 78 ms by bot id=7091928846
+2024-10-13 22:50:23,461 - INFO - Update id=262103821 is handled. Duration 359 ms by bot id=7091928846
+2024-10-13 23:02:52,409 - INFO - callback is called from button with callback.data Get weather conditions
+2024-10-13 23:02:52,531 - INFO - Update id=262103822 is handled. Duration 125 ms by bot id=7091928846
+2024-10-13 23:02:57,291 - INFO - message.content_type: ContentType.LOCATION
+2024-10-13 23:02:57,291 - INFO - function create_buttons(buttons_data_list=None, adjust_number=1) was called
+2024-10-13 23:02:57,321 - INFO - Update id=262103823 is not handled. Duration 30 ms by bot id=7091928846
+2024-10-13 23:02:57,321 - ERROR - Cause exception while process update id=262103823 by bot id=7091928846
+AttributeError: 'NoneType' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "C:\workspace\Morning_Assistant_tg_bot\main.py", line 704, in message_handler
+    if message.text.lower() == 'select':
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'lower'
+2024-10-13 23:02:59,051 - INFO - callback is called from button with callback.data Get current weather
+2024-10-13 23:02:59,051 - INFO - function called: get_current_weather_conditions(coordinates: dict) with args coordinates = {'latitude': 51.483183, 'longitude': 5.50264}
+2024-10-13 23:02:59,140 - INFO - API SUNRISE_SUNSET_DATA_API returned {'latitude': 51.484, 'longitude': 5.5099998, 'generationtime_ms': 0.1150369644165039, 'utc_offset_seconds': 7200, 'timezone': 'Europe/Amsterdam', 'timezone_abbreviation': 'CEST', 'elevation': 18.0, 'current_units': {'time': 'iso8601', 'interval': 'seconds', 'temperature_2m': '°C', 'relative_humidity_2m': '%', 'apparent_temperature': '°C', 'precipitation': 'mm', 'rain': 'mm', 'showers': 'mm', 'snowfall': 'cm', 'weather_code': 'wmo code', 'cloud_cover': '%', 'wind_speed_10m': 'km/h', 'wind_direction_10m': '%', 'wind_gusts_10m': 'km/h'}, 'current': {'time': '2024-10-13T23:00', 'interval': 900, 'temperature_2m': 7.9, 'relative_humidity_2m': 84, 'apparent_temperature': 6.0, 'precipitation': 0.0, 'rain': 0.0, 'showers': 0.0, 'snowfall': 0.0, 'weather_code': 3, 'cloud_cover': 87, 'wind_speed_10m': 5.4, 'wind_direction_10m': 234, 'wind_gusts_10m': 13.0}}
+2024-10-13 23:03:01,625 - INFO - GOOGLE AI API returned response.text: response:
+GenerateContentResponse(
+    done=True,
+    iterator=None,
+    result=protos.GenerateContentResponse({
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "## Weather Evaluation: 2024-10-13T23:00\n\n**Overall:** The current weather conditions are characterized by **mild, overcast conditions with a slight breeze.**  The temperature is pleasant, but the high humidity and cloud cover make it feel cooler than the actual air temperature. \n\n**Breakdown:**\n\n* **Temperature:** The temperature is 7.9\u00b0C, which is pleasant for this time of year. \n* **Apparent Temperature:** The apparent temperature is 6.0\u00b0C, indicating that it feels slightly colder due to the high humidity.\n* **Humidity:** The relative humidity is 84%, which is relatively high. This means that the air is very moist, contributing to the cooler apparent temperature.\n* **Precipitation:** There is currently no precipitation, but the high cloud cover indicates potential for rain.\n* **Cloud Cover:** The cloud cover is 87%, indicating an overcast sky.\n* **Wind:** The wind speed is 5.4 m/s, which is considered a light breeze. Wind gusts reach 13.0 m/s, indicating occasional gusts. The wind direction is 234 degrees, indicating a wind coming from the southwest. \n\n**Recommendations:**\n\n* Wear light layers, as the temperature is mild but the humidity might make you feel colder.\n* Bring an umbrella or raincoat, as the high cloud cover indicates potential for rain.\n* If you are sensitive to the cold, consider wearing a hat and gloves.\n\n**Overall, the weather is pleasant but slightly chilly due to the high humidity and cloud cover. Be prepared for potential rain and wind gusts.** \n"
+              }
+            ],
+            "role": "model"
+          },
+          "finish_reason": "STOP",
+          "index": 0,
+          "safety_ratings": [
+            {
+              "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+              "probability": "NEGLIGIBLE"
+            },
+            {
+              "category": "HARM_CATEGORY_HATE_SPEECH",
+              "probability": "NEGLIGIBLE"
+            },
+            {
+              "category": "HARM_CATEGORY_HARASSMENT",
+              "probability": "NEGLIGIBLE"
+            },
+            {
+              "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+              "probability": "NEGLIGIBLE"
+            }
+          ]
+        }
+      ],
+      "usage_metadata": {
+        "prompt_token_count": 169,
+        "candidates_token_count": 346,
+        "total_token_count": 515
+      }
+    }),
+)
+2024-10-13 23:03:01,672 - INFO - Update id=262103824 is handled. Duration 2625 ms by bot id=7091928846

@@ -1,3 +1,4 @@
+import logging
 import random
 import sqlite3
 
@@ -82,40 +83,63 @@ def get_path_morning_wishes_pic():
     conn.close()
     return img_path_fetched
 
-def select_random_pic_for_overlay__copy__one_modify_by_overlaying_text__and_delete():
+def select_random_pic_make_copy_for_text_overlay() ->dict:
     conn = sqlite3.connect('morning_output.db')
     c = conn.cursor()
     c.execute("SELECT id FROM morning_pic_for_overlay")
     all_ids = c.fetchall()
     if not all_ids:
-        print("No IDs available in the table.")
         logging.info('fetching all ids from the table "morning_pic_for_overlay" resulted in []: No IDs available in the table.')
         return
     all_ids = [container[0] for container in all_ids]
+
+    max_pic_index = max(all_ids)
     random_pic_index = random.choice(all_ids)
+    copied_random_img_path_index = max_pic_index + 1
+    copied_random_img_path = f'media/morning_pictures_for_overlay/morning_pic_{copied_random_img_path_index}.jpg'
+
 
     c.execute("SELECT image FROM morning_pic_for_overlay WHERE id = ?",
                (random_pic_index,))
     img = c.fetchone()
+
     if img is None:
-        print("No image found for the selected ID.")
         logging.info('fetching an image with random id from the table "morning_pic_for_overlay" resulted in (,)')
         return
     img_path_fetched = img[0]
+    #insertion of copied_random_img_path is necessary because several copies of different random pictures can be created by several users simultaneously.
+    # Tracking them in database is necessary to distinguish them
     c.execute(
         "INSERT INTO morning_pic_for_overlay (image) VALUES (?)",
-        (img_path_fetched,))
-    c.execute("DELETE FROM morning_pic_for_overlay WHERE id = ?", (random_pic_index,))
+        (copied_random_img_path,))
     conn.commit()
     conn.close()
-    return  img_path_fetched
+    return  {'original_random_img_path': img_path_fetched, 'copy_random_img_path': copied_random_img_path}
 
-
+def remove_item_from_table(table_name, column_name, item_name):
+    logging.info(f'function called remove_item_from_table(table_name, column_name, item_name)\n'
+                 f'with params: table_name:{table_name}, column_name:{column_name}, item_name:{item_name}')
+    create_db_morning_output()
+    conn = sqlite3.connect('morning_output.db')
+    c = conn.cursor()
+    c.execute(f"SELECT * FROM {table_name} WHERE {column_name} = ?",
+              (item_name,))
+    fetched_item = c.fetchone()
+    if fetched_item:
+        c.execute(f"DELETE FROM {table_name} WHERE {column_name} = ?", (item_name,))
+    else:
+        logging.error(f'Attempt to remove {column_name}: {item_name} from {table_name} unsuccessful: {item_name} not found')
+    conn.commit()
+    conn.close()
+def create_and_fill_db():
+    create_db_morning_output()
+    fill_morning_pic_for_overlay_table()
+    fill_morning_wishes_pic_table()
+    fill_nature_sounds_table()
 
 if __name__ == "__main__":
-    #create_db_morning_output()
-    #fill_morning_pic_for_overlay_table()
-    #fill_morning_wishes_pic_table()
-    #fill_nature_sounds_table()
+
+    #reate_and_fill_db()
+
     pass
 

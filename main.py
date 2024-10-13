@@ -30,10 +30,12 @@ from PIL import Image, ImageDraw, ImageFont
 from text_overlay_on_image import add_text_to_image
 from aiogram.types import BufferedInputFile
 from historical_events_today_requests import get_historical_events_for_today
-from database_actions import select_random_pic_for_overlay__copy__one_modify_by_overlaying_text__and_delete, get_path_morning_wishes_pic, audio_paths
+from database_actions import select_random_pic_make_copy_for_text_overlay, get_path_morning_wishes_pic, audio_paths, remove_item_from_table
 from morning_wishes_pic_requests import get_pic_generated
 from morning_wishes_ai_generated_pic_requests import get_ai_generated_pic_for_text
 import base64
+import shutil
+import os
 
 dp = Dispatcher()
 SESSION = {}
@@ -123,35 +125,20 @@ def create_buttons(buttons_data_list=None, adjust_number=1):
     return
 
 
-"""@dp.message(Command("/start"))
-async def message_handler_greetings(message: types.Message) -> None:
-    print('ok')
-    print(message.text)
-    await message.answer('Hello')"""
-
-
-
-
-"""async def update_handler(update: Update, bot: Bot, dispatcher: Dispatcher):
-    result = await dp.feed_update(bot, update)"""
-
-
 @dp.callback_query(F.data.startswith('Get weather'))
 async def prepare(callback: types.CallbackQuery):
-    print('callback is called')
+    logging.info(f'callback is called from button with callback.data {callback.data}')
     builder = ReplyKeyboardBuilder()
     builder.add(types.KeyboardButton(text="Send geolocation", request_location=True))
     builder.adjust(1)
     reply_markup_ = builder.as_markup(resize_keyboard=True)
-    await callback.message.answer("Please send your location", show_alert=True, reply_markup=reply_markup_)
+    await callback.message.answer("Please send your location:\npress the button below the page", show_alert=True, reply_markup=reply_markup_)
 
 
 @dp.callback_query(F.data.startswith('Get current weather'))
 async def output_current_weather(callback: types.CallbackQuery):
-    logging.info(f'callback is called')
-    print(f'callback is called')
+    logging.info(f'callback is called from button with callback.data {callback.data}')
     coord_dict = SESSION['Location']
-    print(coord_dict)
     current_weather_response = get_current_weather_conditions(coord_dict)
     current_weather_data_dict = current_weather_response['current']
     ai_text_current_weather = make_google_api_request('current weather conditions', current_weather_data_dict)
@@ -164,8 +151,7 @@ async def output_current_weather(callback: types.CallbackQuery):
 
 @dp.callback_query(F.data.startswith('Get current air'))
 async def output_current_air_quality(callback: types.CallbackQuery):
-    logging.info(f'callback is called')
-    print(f'callback is called with F.data {F.data}')
+    logging.info(f'callback is called with callback.data starting with "et current air"')
     coord_dict = SESSION['Location']
 
     allergens_today_response = get_allergens(coord_dict)
@@ -179,12 +165,9 @@ async def output_current_air_quality(callback: types.CallbackQuery):
 
 @dp.callback_query(F.data.startswith('Get sunset/sunrise'))
 async def output_sunset_sunrise_time(callback: types.CallbackQuery):
-    logging.info(f'callback is called')
-    print(f'callback is called')
+    logging.info(f'callback is called from button with callback.data == "Get sunset/sunrise"')
     coord_dict = SESSION['Location']
     today = datetime.datetime.today()
-    print(coord_dict, 'coord')
-    print(get_sunrise_sunset_data(coord_dict))
 
     sunrise_today = get_sunrise_sunset_data(coord_dict)['daily']['sunrise'][0]
     sunrise_today_str = str(sunrise_today).split('T')[1]
@@ -198,7 +181,6 @@ async def output_sunset_sunrise_time(callback: types.CallbackQuery):
 
     daylight_duration_h_min_sec = convert_sec_to_h_min_sec(round(daylight_duration_sec))
     sunshine_duration_h_min_sec = convert_sec_to_h_min_sec(round(sunshine_duration_sec))
-    print(get_sunrise_sunset_data(coord_dict))
     sunset_sunrise_response_str = (
         f'TIME OF SUNRISE TODAY: {sunrise_today_str},\n\nTIME OF SUNSET TODAY: {sunset_today_str},\n\n'
         f' DAYLIGHT DURATION TODAY h:m:s : {daylight_duration_h_min_sec},\n\n SUNSHINE DURATION TODAY BECAUSE OF WEATHER CONDITIONS h:m:s : {sunshine_duration_h_min_sec}')
@@ -209,7 +191,6 @@ async def output_sunset_sunrise_time(callback: types.CallbackQuery):
 @dp.callback_query(F.data == 'Get today horoscope')
 async def prepare_output_today_horoscope(callback: types.CallbackQuery):
     logging.info(f'callback is called from button:"Get today horoscope"')
-    print(f'callback is called')
     question_know_my_zodiac_sign_markup_ = create_buttons(["I know my zodiac sign", "I don`t know my zodiac sign"], 2)
     await callback.message.answer("Do you know your zodiac sign?", reply_markup=question_know_my_zodiac_sign_markup_)
 
@@ -217,13 +198,10 @@ async def prepare_output_today_horoscope(callback: types.CallbackQuery):
 @dp.callback_query(F.data == 'I know my zodiac sign')
 async def output_know_zodiac_sign(callback: types.CallbackQuery):
     logging.info(f'callback is called from button:"I know my zodiac sign"')
-    print(f'callback is called')
-
     zodiac_signs_markup_ = create_buttons(ZODIAC_SIGNS, 4)
     await callback.message.answer("Do you know your zodiac sign?", reply_markup=zodiac_signs_markup_)
     filter_registrate_zodiac_sign()
-    print(horoscope_data.zodiac_sign, 'horoscope_data.zodiac_sign')
-    print(type(horoscope_data.zodiac_sign))
+
 
 
 #aiogram==3.13.1 doesn`t support another way to install filter in this case
@@ -233,14 +211,12 @@ def filter_registrate_zodiac_sign():
         async def save_zodiac_sign(callback: types.CallbackQuery):
             horoscope_data.zodiac_sign = callback.data
             horoscope_resp = get_today_horoscope(zodiac_sign_val=horoscope_data.zodiac_sign)
-            print(horoscope_resp['data']['horoscope_data'])
             await callback.message.answer(horoscope_resp['data']['horoscope_data'])
 
 
 @dp.callback_query(F.data == 'I don`t know my zodiac sign')
 async def output_not_know_zodiac_sign(callback: types.CallbackQuery):
     logging.info(f'callback is called from button:"I don`t know my zodiac sign"')
-    print(f'callback is called')
 
     numbers_str = [str(number) for number in range(0, 10)]
     ask_year_birth_markup_ = create_buttons(numbers_str, 5)
@@ -251,8 +227,6 @@ async def output_not_know_zodiac_sign(callback: types.CallbackQuery):
     await year_event.wait()
     if len(horoscope_data.year) == 4:
         year_event.clear()
-        cancel_markup = create_buttons(['CANCEL', 'CONTINUE'], 1)
-        await callback.message.answer('Press CANCEL button to delete year if needed', reply_markup=cancel_markup)
 
 
 def save_year_birth_ask_month_birth(numbers_str):
@@ -266,8 +240,10 @@ def save_year_birth_ask_month_birth(numbers_str):
             elif len(horoscope_data.year) == 4:
                 if 5 <= int(datetime.datetime.today().year) - int(horoscope_data.year) <= 100:
                     year_event.set()
+                    cancel_markup = create_buttons(['CANCEL', 'CONTINUE'], 1)
                     await callback.message.answer(
-                        "Selected year saved. To cancel select CANCEL button")
+                        "Selected year saved. To cancel select CANCEL button", reply_markup=cancel_markup)
+
                     return
 
                 else:
@@ -316,7 +292,6 @@ def save_month_birth_ask_day_birth_for_zodiac_sign():
 
 
 def save_day_birth(days):
-    print('save_day_birth(days) called')
     for day in days:
         @dp.callback_query(F.data == day)
         async def save_day_ask_horoscope(callback: types.CallbackQuery):
@@ -350,16 +325,23 @@ def registrate_category_get_quote(positive_categories):
             resp_quote = get_quotes(callback.data)
             resp_quote_ready_for_output = f'QUOTE\n {resp_quote[0]['quote']}  \n\nAUTHOR\n  {resp_quote[0]['author']}  \n\nCATEGORY\n  {resp_quote[0]['category']}'
 
-            image_for_text_overlay_path = select_random_pic_for_overlay__copy__one_modify_by_overlaying_text__and_delete()
-            output_image_path = add_text_to_image(image_for_text_overlay_path, f"{resp_quote_ready_for_output}",
-                                                  image_for_text_overlay_path)
+            #select_random_pic_make_copy_for_text_overlay() returns {'original_random_img_path': img_path_fetched, 'copy_random_img_path': copied_random_img_path}
+            original_and_copy_img_paths = select_random_pic_make_copy_for_text_overlay()
+            original_image_path = original_and_copy_img_paths['original_random_img_path']
+            copied_image_path = original_and_copy_img_paths['copy_random_img_path']
+            shutil.copy(original_image_path, copied_image_path)
 
-            input_file = types.FSInputFile(output_image_path)
+            image_with_overlayed_text = add_text_to_image(copied_image_path, f"{resp_quote_ready_for_output}",
+                                                  copied_image_path, position = (20,30))
+            input_file = types.FSInputFile(image_with_overlayed_text)
 
             await callback.message.answer_photo(photo=input_file)
+            os.remove(copied_image_path)
+            remove_item_from_table('morning_pic_for_overlay', 'image', copied_image_path)
 
             yes_no = ['yes', 'no']
             reply_markup_comment_quote_ai = create_buttons(yes_no, 1)
+
 
             await callback.message.answer(
                 'Do you want a comment from AI?',

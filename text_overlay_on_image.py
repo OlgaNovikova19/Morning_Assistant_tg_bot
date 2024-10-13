@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 
 
-def add_text_to_image(image_path, text, output_path, position=(20, 100), font_size=15, font_type = None, font_color = None):
+def add_text_to_image(image_path:str, text:str, output_path:str, position:tuple=(20, 100), font_size:int=15, font_type:str|None = None, font_color:str|None = None) -> str:
     image = Image.open(image_path)
     draw = ImageDraw.Draw(image)
     padding = 10

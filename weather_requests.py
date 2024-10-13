@@ -3,7 +3,7 @@ import logging
 import datetime
 
 URL_AIR_QUALITY_API = 'https://air-quality-api.open-meteo.com/v1/air-quality'
-URL_GEOCODING_API = 'https://geocoding-api.open-meteo.com/v1/search'
+#URL_GEOCODING_API = 'https://geocoding-api.open-meteo.com/v1/search'
 URL_WEATHER_CURRENT_API = 'https://api.open-meteo.com/v1/forecast'
 URL_SUNRISE_SUNSET_DATA_API = 'https://api.open-meteo.com/v1/forecast'
 
@@ -15,7 +15,7 @@ logging.basicConfig(
 )
 
 
-def get_coordinates_by_city_name(city_name: str, country: str) -> dict | None:
+'''def get_coordinates_by_city_name(city_name: str, country: str) -> dict | None:
     params = {'name': city_name}
     try:
         response = requests.get(URL_GEOCODING_API, params)
@@ -31,7 +31,7 @@ def get_coordinates_by_city_name(city_name: str, country: str) -> dict | None:
                 return
     except requests.exceptions.RequestException as e:
         logging.error(e)
-        return
+        return'''
 
 
 def get_allergens(coordinates: dict):
